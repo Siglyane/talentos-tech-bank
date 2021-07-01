@@ -73,15 +73,32 @@ public class Exercicios {
                 auxiliarPercentual;
 
         System.out.println("Insira o número de eleitores do município");
+        if (!in.hasNextDouble()) {
+            System.out.println("Você não digitou um valor válido, encerrando o programa...");
+            System.exit(1);
+        }
         eleitores = in.nextDouble();
 
+
         System.out.println("Insira o número total de votos brancos");
+        if (!in.hasNextDouble()) {
+            System.out.println("Você não digitou um valor válido, encerrando o programa...");
+            System.exit(1);
+        }
         votosBrancos = in.nextDouble();
 
         System.out.println("Insira o número total de votos nulos");
+        if (!in.hasNextDouble()) {
+            System.out.println("Você não digitou um valor válido, encerrando o programa...");
+            System.exit(1);
+        }
         votosNulos = in.nextDouble();
 
         System.out.println("Insira o número total de votos válidos");
+        if (!in.hasNextDouble()) {
+            System.out.println("Você não digitou um valor válido, encerrando o programa...");
+            System.exit(1);
+        }
         votosValidos = in.nextDouble();
         in.close();
 
