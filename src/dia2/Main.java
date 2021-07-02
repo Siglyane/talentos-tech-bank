@@ -34,4 +34,11 @@ public class Main {
             System.out.println("Você não possui permissão para assistir esse conteúdo");
         }
     }
+
+    public static void ifSemFechaChaves() {
+        // O if sem {} executa somente a primeira linha logo após ele mesmo
+        if (1 > 0)
+            System.out.println("Um é maior que zero");
+        System.out.println("Não continua dentro do if");
+    }
 }

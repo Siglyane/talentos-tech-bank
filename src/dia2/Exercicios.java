@@ -7,19 +7,39 @@ import java.util.Scanner;
 public class Exercicios {
     public static void main(String[] args) {
 
-        exercicio6();
+        exercicio5();
 
+    }
+
+    public static void validaSystemInInteiro(Scanner in) {
+        if (!in.hasNextInt()) {
+            System.out.println("Você precisa informar um número do tipo inteiro");
+            in.close();
+            System.exit(1);
+        }
+    }
+
+    public static void validaSystemInString(Scanner in) {
+        if (!in.hasNext()) {
+            System.out.println("Você precisa digitar uma string");
+            in.close();
+            System.exit(1);
+        }
+    }
+
+    public static void validaSystemInDouble(Scanner in) {
+        if (!in.hasNextDouble()) {
+            System.out.println("Você precisa informar um número do tipo inteiro");
+            in.close();
+            System.exit(1);
+        }
     }
 
     public static void exercicio1() {
         /* 1.Escreva um algoritmo que leia um número inteiro e diga se ele é par ou ímpar. */
         Scanner in = new Scanner(System.in);
         System.out.println("Digite um número inteiro aleatório");
-        if (!in.hasNextInt()) {
-            System.out.println("Você precisa informar um número do tipo inteiro");
-            System.exit(1);
-            in.close();
-        }
+        validaSystemInInteiro(in);
         int numero = in.nextInt();
 
 
@@ -60,10 +80,7 @@ public class Exercicios {
         Scanner in = new Scanner(System.in);
         System.out.println("Digite sua idade");
 
-        if (!in.hasNextInt()) {
-            System.out.println("Você precisa informar um número do tipo inteiro");
-            System.exit(1);
-        }
+        validaSystemInInteiro(in);
         int teste = in.nextInt();
 
 
@@ -89,22 +106,16 @@ public class Exercicios {
     Escreva um algoritmo que determina o maior também. */
         Scanner in = new Scanner(System.in);
         System.out.println("Digite o primeiro número inteiro");
-        if (!in.hasNextInt()) {
-            System.out.println("Você não digitou um número inteiro");
-            System.exit(1);
-            in.close();
-        }
+        validaSystemInInteiro(in);
         int numero1 = in.nextInt();
 
         System.out.println("Digite o segundo número inteiro");
-        if (!in.hasNextInt()) {
-            System.out.println("Você não digitou um número inteiro");
-            System.exit(1);
-            in.close();
-        }
+        validaSystemInInteiro(in);
         int numero2 = in.nextInt();
         in.close();
 
+        // Resolução If Else
+        // Avoid concatenation Java
         if (numero1 > numero2) {
             System.out.println("O número " + numero1 + " é maior que o número " + numero2);
         } else if (numero2 > numero1) {
@@ -113,6 +124,17 @@ public class Exercicios {
             System.out.println("Ambos possuem o mesmo valor");
         }
 
+        // Resolução com térnario
+
+        if (numero1 == numero2) {
+            System.out.println("Os números são iguais");
+        } else {
+            System.out.println(
+                    numero1 > numero2
+                            ? String.format("O primeiro número %d é maior que %d", numero1, numero2)
+                            : String.format("O segundo número %d é maior que %d", numero2, numero1)
+            );
+        }
 
     }
 
@@ -121,14 +143,17 @@ public class Exercicios {
     Encontre o maior valor
     Encontre o menor valor
     Calcule a média dos números lidos */
+
+        // TODO alterar o int do maior valor e menor valor
         Scanner in = new Scanner(System.in);
         int valores[] = new int[10];
         int maiorValor = 0;
-        int menorValor = 32000;
+        int menorValor = 32767;
         int soma = 0;
 
         for (int i = 0; i < 10; i++) {
             System.out.println("Digite o um número inteiro");
+            validaSystemInInteiro(in);
             valores[i] = in.nextInt();
             soma += valores[i];
             if (valores[i] > maiorValor) {
@@ -145,7 +170,6 @@ public class Exercicios {
         System.out.println("O valor médio é " + valorMedio);
 
 
-
     }
 
     public static void exercicio5() {
@@ -153,37 +177,49 @@ public class Exercicios {
         (adição, subtração, multiplicação e divisão). Todas as operações serão entre dois valores.
          No começo do algoritmo pergunte ao usuário qual operação ele deseja fazer e quais são os valores.*/
         Scanner in = new Scanner(System.in);
-        System.out.println("Selecione um das opções informando o número ao lado: Adição [0], Subtração [1], " +
-                "Multiplição [2] ou Divisão [3]");
-        int operacaoSelecionada = in.nextInt();
+
+//        System.out.println("Selecione um das opções informando o número ao lado: Adição [0], Subtração [1], " +
+//                "Multiplição [2] ou Divisão [3]");
+//        int operacaoSelecionada = in.nextInt();
+
+        System.out.println("Selecione um das opções informando a letra ao lado: Adição [a], Subtração [s], " +
+                "Multiplição [m] ou Divisão [d]");
+        validaSystemInString(in);
+        char operacaoSelecionada = in.next().charAt(0); //Pegar somente o char localizado no 0
 
         System.out.println("Digite o primeiro número da operação");
-        int numero1 = in.nextInt();
+        validaSystemInDouble(in);
+        double numero1 = in.nextDouble();
 
         System.out.println("Digite o segundo número da operação");
-        int numero2 = in.nextInt();
-        in.close();
+        validaSystemInDouble(in);
+        double numero2 = in.nextDouble();
 
+        double resultado;
         switch (operacaoSelecionada) {
-            case 0:
-                System.out.println("O resultado da soma é:");
-                System.out.println(numero1 + numero2);
+            case 'a':
+                resultado = numero1 + numero2;
+                System.out.printf("O resultado da soma é: %f", resultado);
                 break;
-            case 1:
-                System.out.println("O resultado da subtração é:");
-                System.out.println(numero1 - numero2);
+            case 's':
+                resultado = numero1 - numero2;
+                System.out.printf("O resultado da subtração é: %f", resultado);
                 break;
-            case 2:
-                System.out.println("O resultado da multiplicação é:");
-                System.out.println(numero1 * numero2);
+            case 'm':
+                resultado = numero1 * numero2;
+                System.out.printf("O resultado da multiplicação é: %f", resultado);
                 break;
-            case 3:
-                System.out.println("O resultado da divisão é:");
-                System.out.println(numero1 / numero2);
+            case 'd':
+                if (numero2 == 0) {
+                    System.out.println("Não se pode dividir por 0");
+                    break;
+                }
+                resultado = numero1 / numero2;
+                System.out.printf("O resultado da divisão é: %f", resultado);
                 break;
         }
 
-
+        in.close();
     }
 
     public static void exercicio6() {
@@ -191,9 +227,12 @@ public class Exercicios {
      1 (Pedra [pe], Papel [pa], Tesoura [t]) e deverá fazer o mesmo para o jogador 2.
      No final da execução o algoritmo deverá dizer qual é o jogador vencedor ou se houve empate */
         Scanner in = new Scanner(System.in);
+        // TODO validar se a opção de jogo escolhido existe
         System.out.println("Primeiro jogador, escolha entre Pedra [1], Papel [2] ou Tesoura [3]");
+        validaSystemInInteiro(in);
         int primeiroJogador = in.nextInt();
-        System.out.println("Segundo jogador, agora você escolha entre Pedra [1], Papel [2] ou Tesoura [3]");
+        System.out.println("Segundo jogador, agora você escolhe entre Pedra [1], Papel [2] ou Tesoura [3]");
+        validaSystemInInteiro(in);
         int segundoJogador = in.nextInt();
         in.close();
 
@@ -210,7 +249,6 @@ public class Exercicios {
             String quemGanhou = segundoJogador == 2 ? "Primeiro jogador é o vencedor" : "Segundo jogador é o vencedor";
             System.out.println(quemGanhou);
         }
-
 
 
     }
