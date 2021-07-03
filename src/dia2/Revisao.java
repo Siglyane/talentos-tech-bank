@@ -1,6 +1,4 @@
-package dia1;
-
-import java.util.function.DoubleToIntFunction;
+package dia2;
 
 public class Revisao {
     public static void main(String[] args) {

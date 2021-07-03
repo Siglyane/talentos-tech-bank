@@ -1,90 +1,44 @@
 package dia3;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
+        operadores();
+    }
 
-    aprendendoFor();
+    public static void operadores() {
+        // Atribuição
+        int idade = 20;
+        int i = 1 + 1;
+
+        System.out.println(10.0 / 3.0);
+        System.out.println(10 % 3);
+
+        boolean operadorRelacional = 1 != 2; // ==, !=, >, <, >=, <=
+
+        // operadores Lógicos
+
+        boolean testeLogico = 1 == 1 && 2 == 2;
+
+        boolean invertido = !true;
 
     }
 
-    public static void whileDoWhile() {
-        System.out.println("WHILE");
-        int contagem = 11;
+    public static void primeiroIf() {
+        int idade = 155;
 
-        while (contagem < 11) {
-            System.out.println(contagem);
-            contagem++;
+        if (idade < 0 || idade >= 150) {
+            System.out.println("Idade inválida");
+        } else if (idade >= 18) {
+            System.out.println("Você tem permissão para assistir esse conteúdo");
+        } else {
+            System.out.println("Você não possui permissão para assistir esse conteúdo");
         }
-
-        System.out.println("DO WHILE");
-        contagem = 11;
-
-        //
-        do {
-            System.out.println(contagem);
-            contagem++;
-        } while (contagem < 11);
     }
 
-    //TODO pesquisar cenários melhores para while e do while
-
-    public static void aprendendoFor() {
-        // para ( i = 0; i < 10; i++)
-
-        for (int i = 0; i <= 10; i++) {
-            System.out.println(i);
-        }
-
-        System.out.println("Iterando sobre uma lista com forEach");
-
-        List<Integer> minhaListaDeInteiros = new ArrayList<>();
-        minhaListaDeInteiros.add(1);
-        minhaListaDeInteiros.add(2);
-        minhaListaDeInteiros.add(3);
-
-        minhaListaDeInteiros.forEach(item -> {
-            System.out.println(item);
-        });
-
-        System.out.println("Iterando sobre a lista com for convencional");
-
-        for (int i = 0; i < minhaListaDeInteiros.size(); i++) {
-            System.out.println(minhaListaDeInteiros.get(i));
-        }
-
-        System.out.println("Iterando sobre a lista com while");
-
-        int j = 0;
-
-        while (j < minhaListaDeInteiros.size()) {
-            System.out.println(minhaListaDeInteiros.get(j));
-            j++;
-        }
-
-        System.out.println("Método for-each"); //TODO pesquisar o nome exato da tecnica
-
-        for (int x: minhaListaDeInteiros) {
-            System.out.println(x);
-        }
-
-        //Repetição com método recursivo
-        //Cuidado, pode estourar a pilha de execução do Java, Stack Overflow
-
-        System.out.println("Loop Recursivo");
-        System.out.println(metodoRecursivo(1));
-
+    public static void ifSemFechaChaves() {
+        // O if sem {} executa somente a primeira linha logo após ele mesmo
+        if (1 > 0)
+            System.out.println("Um é maior que zero");
+        System.out.println("Não continua dentro do if");
     }
-
-    public static int metodoRecursivo(int i) {
-        if (i <= 10) {
-            return metodoRecursivo(i + 1);
-        }
-
-        return i;
-    }
-
 }

@@ -1,147 +1,89 @@
 package dia4;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
-    // Revisão e exercícios de fixação loops
-
     public static void main(String[] args) {
-        revisaoQuestaoI();
-        revisaoQuestaoII();
-        revisaoQuestaoIII();
-        revisaoQuestaoIV();
-        revisaoQuestaoV();
-        revisaoQuestaoVI();
+
+    aprendendoFor();
+
     }
 
-    public static void validaSystemInInteiro(Scanner in) {
-        if (!in.hasNextInt()) {
-            System.out.println("Você precisa informar um número do tipo inteiro");
-            in.close();
-            System.exit(1);
-        }
-    }
+    public static void whileDoWhile() {
+        System.out.println("WHILE");
+        int contagem = 11;
 
-    public static void revisaoExercicio1() {
-        //System.out.println(Math.pow(2, 3));
-
-        // Faça um programa que calcula o exponencial a partir de sua base e sua potencia
-        // Por exemplo, 2 elevado 3 = 8
-        Scanner in = new Scanner(System.in);
-        System.out.println("Para calcular a exponencial digite o valor da base");
-        validaSystemInInteiro(in);
-        int base = in.nextInt();
-
-        System.out.println("Digite o valor do expoente");
-        validaSystemInInteiro(in);
-        int expoente = in.nextInt();
-        int resultado = base;
-
-        for (int i = expoente; i > 1; i--) {
-            resultado *= base;
-        }
-        System.out.printf("Resultado: %d", resultado);
-    }
-
-    public static void revisaoQuestaoI() {
-
-        System.out.println("Questão I");
-        for (int i = 0; i < 5; i++) {
-            System.out.printf("\n");
-            for (int j = 0; j < 10; j++) {
-                System.out.printf("*");
-            }
-        }
-    }
-    public static void revisaoQuestaoII() {
-
-        System.out.println("\nQuestão II");
-        for (int i = 0; i < 5; i++) {
-            System.out.printf("\n");
-            for (int j = 0; j <= i; j++) {
-                System.out.printf("*");
-            }
-        }
-    }
-    public static void revisaoQuestaoIII() {
-
-        System.out.println("\nQuestão III");
-        int linhas = 5;
-        for (int i = 1; i <= linhas; i++) {
-            int k = linhas - i;
-
-            while (k > 0) {
-                System.out.print(" ");
-                k--;
-            }
-            for (int j = 1; j <= i; j++) {
-                System.out.print("*");
-            }
-            System.out.println("");
+        while (contagem < 11) {
+            System.out.println(contagem);
+            contagem++;
         }
 
+        System.out.println("DO WHILE");
+        contagem = 11;
+
+        //
+        do {
+            System.out.println(contagem);
+            contagem++;
+        } while (contagem < 11);
     }
-    public static void revisaoQuestaoIV() {
 
-        System.out.println("\nQuestão IV");
+    //TODO pesquisar cenários melhores para while e do while
 
-        int linhas = 5;
-        for (int i = 1; i < linhas; i++) {
-            int espacos = linhas - i;
+    public static void aprendendoFor() {
+        // para ( i = 0; i < 10; i++)
 
-            while (espacos > 0) {
-                System.out.print(" ");
-                espacos--;
-            }
-
-            int k = 0;
-            while (k != 2 * i - 1) {
-                System.out.print("*");
-                k++;
-            }
-            System.out.println(" ");
+        for (int i = 0; i <= 10; i++) {
+            System.out.println(i);
         }
 
-    }
-    public static void revisaoQuestaoV() {
+        System.out.println("Iterando sobre uma lista com forEach");
 
-        System.out.println("\nQuestão V");
+        List<Integer> minhaListaDeInteiros = new ArrayList<>();
+        minhaListaDeInteiros.add(1);
+        minhaListaDeInteiros.add(2);
+        minhaListaDeInteiros.add(3);
 
-        int linhas = 6;
-        for (int i = 1; i < linhas; i++) {
-            int espacos = linhas - i;
+        minhaListaDeInteiros.forEach(item -> {
+            System.out.println(item);
+        });
 
-            while (espacos > 0) {
-                System.out.print(" ");
-                espacos--;
-            }
+        System.out.println("Iterando sobre a lista com for convencional");
 
-            int k = 0;
-            while (k != 2 * i - 1) {
-                System.out.print(i);
-                k++;
-            }
-            System.out.println(" ");
+        for (int i = 0; i < minhaListaDeInteiros.size(); i++) {
+            System.out.println(minhaListaDeInteiros.get(i));
         }
-    }
-    public static void revisaoQuestaoVI() {
 
-        System.out.println("Questão VI");
-        //@autor Virginia
-        int rows = 5;
-        System.out.println(" ");
-        for (int i = 1; i <= rows; i++) {
-            for (int j = 1; j <= (rows - i) * 2; j++) {
-                System.out.print(" ");
-            }
-            for (int k = i; k >= 1; k--) {
-                System.out.print(" " + k);
-            }
-            for (int l = 2; l <= i; l++) {
-                System.out.print(" " + l);
-            }
-            System.out.println();
+        System.out.println("Iterando sobre a lista com while");
+
+        int j = 0;
+
+        while (j < minhaListaDeInteiros.size()) {
+            System.out.println(minhaListaDeInteiros.get(j));
+            j++;
         }
-    }
+
+        System.out.println("Método for-each"); //TODO pesquisar o nome exato da tecnica
+
+        for (int x: minhaListaDeInteiros) {
+            System.out.println(x);
+        }
+
+        //Repetição com método recursivo
+        //Cuidado, pode estourar a pilha de execução do Java, Stack Overflow
+
+        System.out.println("Loop Recursivo");
+        System.out.println(metodoRecursivo(1));
+
     }
 
+    public static int metodoRecursivo(int i) {
+        if (i <= 10) {
+            return metodoRecursivo(i + 1);
+        }
+
+        return i;
+    }
+
+}
