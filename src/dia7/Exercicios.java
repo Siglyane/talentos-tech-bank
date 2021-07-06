@@ -54,6 +54,8 @@ public class Exercicios {
             validaSystemInInteiro(in);
             numeros[i] = in.nextInt();
         }
+        in.close();
+
         int totalNegativos = 0;
         for (int i = 0; i < numeros.length; i++) {
             if (numeros[i] < 0) {
@@ -87,6 +89,7 @@ public class Exercicios {
             validaSystemInInteiro(in);
             numeros[i] = in.nextInt();
         }
+        in.close();
         int totalPares = 0;
         for (int i = 0; i < numeros.length; i++) {
             if (numeros[i] % 2 == 0) {
@@ -110,6 +113,7 @@ public class Exercicios {
             validaSystemInInteiro(in);
             numeros[i] = in.nextInt();
         }
+        in.close();
 
         // Com List
 //        List<Integer> lista = new ArrayList<>();
@@ -171,6 +175,7 @@ public class Exercicios {
         }
 
         System.out.println("A palavra era: Amora");
+        in.close();
 
 
     }
