@@ -7,6 +7,7 @@ public class OrientacaoObjetos {
         Caneta caneta1 = new CanetaBic();
 
         System.out.println(caneta1);
+        caneta1.tamanhoDaCaneta = 10.0;
 
     }
 }
