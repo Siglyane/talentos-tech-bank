@@ -75,8 +75,6 @@ public class Main {
                 case 0:
                     programaEmExecução = false;
                     break;
-                default:
-                    break;
             }
 
         }
