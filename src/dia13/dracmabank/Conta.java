@@ -2,20 +2,19 @@ package dia13.dracmabank;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Conta {
 
-    private double saldo = 0;
+    protected double saldo = 0;
     private int numeroDaConta;
     private boolean statusDaConta = true;
-    private List<String> extrato = new ArrayList<>();
+    protected List<String> extrato = new ArrayList<>();
 
     private Cliente cliente;
 
     public Conta(double saldo, Cliente cliente) {
         this.saldo = saldo;
-        this.numeroDaConta = (int) ((Math.random() * (9999-1000)) + 1000);
+        this.numeroDaConta = (int) ((Math.random() * (9999 - 1000)) + 1000);
         this.cliente = cliente;
     }
 
@@ -30,13 +29,17 @@ public class Conta {
     public void sacar(double valorDoSaque) {
 
         if (saldo >= valorDoSaque) {
-            this.saldo -= valorDoSaque;
-            System.out.printf("Saldo atual: R$ %.2f \n", saldo);
-            String auxiliar = "Saque: R$ " + valorDoSaque;
-            extrato.add(auxiliar);
+            metodoDoSaque(valorDoSaque);
         } else {
             System.out.println("Saldo insuficiente");
         }
+    }
+
+    protected void metodoDoSaque(double valorDoSaque) {
+        this.saldo -= valorDoSaque;
+        System.out.printf("Saldo atual: R$ %.2f \n", saldo);
+        String auxiliar = "Saque: R$ " + valorDoSaque;
+        extrato.add(auxiliar);
     }
 
     public void depositar(double valorDoDeposito) {
@@ -48,18 +51,19 @@ public class Conta {
 
     public void encerrarConta() {
         if (statusDaConta) {
-            if (saldo > 0) {
-                System.out.println("Você deve sacar o saldo para encerrar a conta");
+            if (saldo != 0) {
+                System.out.println("Para encerrar a conta, seu saldo deve ser R$ 0.00");
+                System.out.printf("Seu saldo atual é: R$ %.2f\n", saldo);
             } else {
                 statusDaConta = false;
                 System.out.println("Conta encerrada");
+                System.exit(1);
             }
-        } else {
-            System.out.println("Esta conta já foi encerrada");
         }
     }
 
-    public double getSaldo() {
-        return saldo;
+    public void adicionarLimiteChequeEspecial(double valorChequeEspecial, int senhaDigitada) {
+
     }
+
 }
