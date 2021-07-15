@@ -1,5 +1,7 @@
 package dia13.dracmabank;
 
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,22 +14,45 @@ public class Conta {
 
     private Cliente cliente;
 
+    public DecimalFormat fmt = new DecimalFormat("0.00");
+
     public Conta(double saldo, Cliente cliente) {
         this.saldo = saldo;
         this.numeroDaConta = (int) ((Math.random() * (9999 - 1000)) + 1000);
         this.cliente = cliente;
     }
 
+    public void mostrarInicio() {
+        System.out.printf("\nOlá, %s!\nConta nº %d\n", cliente.getNome(), numeroDaConta);
+    }
+
+    public void mostrarSaldoAtual() {
+        System.out.printf("Saldo atual: R$ %.2f\n", saldo);
+    }
+
     public void mostrarExtrato() {
-        System.out.println("----Extrato----");
+        System.out.println("\n----Extrato----");
+        System.out.println("DRACMA BANK");
+        System.out.printf("Cliente: %s\n", cliente.getNome());
+        System.out.printf("Número da conta: %d\n", numeroDaConta);
+        System.out.println("--------");
+
         for (String operacao : extrato) {
             System.out.println(operacao);
         }
-        System.out.printf("Seu saldo atual: R$ %.2f \n", saldo);
+
+        System.out.println("--------");
+        mostrarSaldoAtual();
+    }
+
+    protected void metodoDoSaque(double valorDoSaque) {
+        this.saldo -= valorDoSaque;
+        System.out.printf("\nSaque no valor de R$ %.2f realizado com sucesso!\n", valorDoSaque);
+        mostrarSaldoAtual();
+        extrato.add("Saque: R$ " + fmt.format(valorDoSaque));
     }
 
     public void sacar(double valorDoSaque) {
-
         if (saldo >= valorDoSaque) {
             metodoDoSaque(valorDoSaque);
         } else {
@@ -35,35 +60,25 @@ public class Conta {
         }
     }
 
-    protected void metodoDoSaque(double valorDoSaque) {
-        this.saldo -= valorDoSaque;
-        System.out.printf("Saldo atual: R$ %.2f \n", saldo);
-        String auxiliar = "Saque: R$ " + valorDoSaque;
-        extrato.add(auxiliar);
-    }
-
     public void depositar(double valorDoDeposito) {
         this.saldo += valorDoDeposito;
-        System.out.printf("Saldo atual: R$ %.2f \n", saldo);
-        String auxiliar = "Deposito: R$ " + valorDoDeposito;
-        extrato.add(auxiliar);
+        System.out.printf("\nDepósito no valor de R$ %.2f realizado com sucesso!\n", valorDoDeposito);
+        mostrarSaldoAtual();
+        extrato.add("Depósito: R$ " + fmt.format(valorDoDeposito)
+        );
     }
 
     public void encerrarConta() {
         if (statusDaConta) {
             if (saldo != 0) {
                 System.out.println("Para encerrar a conta, seu saldo deve ser R$ 0.00");
-                System.out.printf("Seu saldo atual é: R$ %.2f\n", saldo);
+                mostrarSaldoAtual();
             } else {
                 statusDaConta = false;
                 System.out.println("Conta encerrada");
                 System.exit(1);
             }
         }
-    }
-
-    public void adicionarLimiteChequeEspecial(double valorChequeEspecial, int senhaDigitada) {
-
     }
 
 }

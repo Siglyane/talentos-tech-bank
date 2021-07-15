@@ -1,6 +1,7 @@
 package dia13.dracmabank;
 
 public class Cliente {
+
     private String nome;
     private String cpf;
 
@@ -12,11 +13,6 @@ public class Cliente {
     public String getNome() {
         return nome;
     }
-
-    public String getCpf() {
-        return cpf;
-    }
-
 
 
 }
